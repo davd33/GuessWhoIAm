@@ -1,0 +1,23 @@
+<img [src]="imageSource"
+     [ngClass]="{answered: !notPlayedYet}"
+     (load)="itsLoaded()"/>
+
+<div *ngIf="notPlayedYet" class="container">
+  <h1>Qui suis-je?</h1>
+
+  <ul>
+    <li *ngFor="let answer of answers">
+      <span class="choice" (click)="tryAnswer(answer)">{{answer.name}}</span>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="success" class="bravo">
+  Bravooo!<br>
+  <em (click)="reload()" class="pointer">Try again</em>!
+</div>
+
+<div *ngIf="!success && !notPlayedYet" class="try-again">
+  Loooseeeeeer!<br>
+  <em (click)="reload()" class="pointer">Try again</em>!
+</div>
